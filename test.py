@@ -11,9 +11,7 @@ import re
 by_demographic = dict()
 
 header = content[0]
-print(len(header))
-print(header[0])
 
-# for field in header:
-#     # if re.match('Male', line) 
-#     print(field)
+for field in header:
+    # if re.match('Male', line) 
+    print(field)

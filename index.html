@@ -1,0 +1,329 @@
+<html>
+<head>
+<title>Project 0</title>
+<link type="text/css" href="project1.css" rel="stylesheet"></link>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!--Put your D3 import statement between these two lines-->
+<!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<!--Put your D3 import statement between these two lines-->
+<!-- 
+CITATIONS and help:
+-->
+</head>
+
+<body>
+    <div id="acknowledgements">
+        <h2>Acknowledgements and resources</h2>
+        <ul>
+            <li><a href="https://bl.ocks.org/pstuffa/26363646c478b2028d36e7274cedefa6"><span>for line graphs</span></a></li>
+            <li><a href="https://github.com/d3/d3/issues/2912"><span>for help with converting to numbers</span></a></li>
+            <li><a href="http://bl.ocks.org/WilliamQLiu/76ae20060e19bf42d774"><span>for help with mouseovers</span></a></li>
+            <li><a href="http://www.d3noob.org/2013/01/adding-title-to-your-d3js-graph.html"> <span>for help with titles</span></a></li>
+            <li><a href="http://bl.ocks.org/Caged/6476579"><span>for help with tooltips</span></a></li>
+            <li><a href="https://bl.ocks.org/d3noob/257c360b3650b9f0a52dd8257d7a2d73"> <span>for more help with tooltips</span> </a></li>
+            <li><a href="https://stackoverflow.com/questions/1909648/stacking-divs-on-top-of-each-other"><span>for stacking divs</span></a></li>
+            <li><a href="https://stackoverflow.com/questions/1539032/getting-the-value-of-a-select-box-in-internet-explorer"><span>for getting the value of a select box</span></a></li>
+            <li><a href="https://www.w3schools.com/jsref/event_onchange.asp"> <span>for on change events</span></a></li>
+            <li><a href="https://stackoverflow.com/questions/3590879/how-to-transition-between-two-svg-images"><span>for transitioning between two svgs (the "legit" way haha)</span></a></li>
+    </div>
+    <div id="partOne">
+        <h1>Part One: </h1>
+    </div>
+    
+    <div id="partTwo">
+        <h1>Part Two: </h1>
+        <div id="barchart">
+        </div>
+    </div>
+    
+    <div id="partThree">
+        <h1>Part Three &amp; Four: </h1>
+        <div id="scatterplot">
+            <p id="scatterLabel"></p>
+        </div>
+    </div>
+    
+    <div id="partFive">
+        <h1>Part Five: </h1>
+        <div id="scatterplotSet">
+            <div id="p5_plot_1"></div>
+            <div id="p5_plot_2"></div>
+            <div id="p5_plot_3"></div>
+            <div id="p5_plot_4"></div>
+        </div>
+    </div>
+
+    <div id="transitions">
+        <h2>Transitions</h2>
+        <select id="transitions_select" name="transitions_select" onchange="transitionDataSet()">
+            <option>Anscombe I</option>
+            <option>Anscombe II</option>
+            <option>Anscombe III</option>
+            <option>Anscombe IV</option>
+        </select>
+        <div id="transitions_plot_1" class="stacked"></div>
+        <div id="transitions_plot_2" class="stacked"></div>
+        <div id="transitions_plot_3" class="stacked"></div>
+        <div id="transitions_plot_4" class="stacked"></div>
+    </div>
+    
+    <script type="text/javascript">
+        // Put your part one code here ***********************
+        d3.csv("/data/anscombe_I.csv", checkDataset);
+        d3.csv("/data/anscombe_II.csv", checkDataset);
+        d3.csv("/data/anscombe_III.csv", checkDataset);
+        d3.csv("/data/anscombe_IV.csv", checkDataset);
+    
+        // Leave this to test your data uploading. All data uploading should be above this line
+        function checkDataset(dataset) {
+            if (dataset.length == 11)
+                $("#partOne").append("<p>data loaded correctly</p>");
+            else
+                $("#partOne").append("<p>data loaded incorrectly.</p>");
+        }
+        
+        // set the dimensions and margins of the graph
+        var margin = {top: 20, right: 20, bottom: 20, left: 20};
+        var width = 400 - margin.left - margin.right;
+        var height = 400 - margin.top - margin.bottom;
+
+        // these fields will be used as keys accessing values we are graphing
+        var xVal = "x";
+        var yVal = "y";
+        
+        // these functions are the accessors for each element in the dataset
+        var getX = function(d) { return +d[xVal]; };
+        var getY = function(d) { return +d[yVal]; };
+
+        // these are our scales for the axes
+        var x = d3.scaleLinear().range([0, width]);
+        var y = d3.scaleLinear().range([height, 0]);
+
+        // these functions retrieve the appropriate values for the given
+        // element for the appropriately set scale
+        var getScaledX = function(d) { return x(d[xVal]); };
+        var getScaledY = function(d) { return y(d[yVal]); };
+
+        // this function takes in three parameters:
+        // 1. an element to append an SVG to
+        // 2. an x-axis
+        // 3. a y-axis
+        // 
+        // it does the gruntwork of:
+        // - making the svg the right size
+        // - adding the x- and y-axes to the graph
+        // - labelling those axes
+        function getSVGWithLabelsAndAxes(element, x_axis, y_axis, label) {
+            var svg = d3.select(element).append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate("+ margin.left + "," + margin.top + ")");
+
+            svg.append("text")
+                .attr("class", "label")
+                .text(xVal)
+                .attr("x", width + 10)
+                .attr("y", height);
+
+            // y-axis label
+            svg.append("text")
+                .attr("class", "label")
+                .text(yVal)
+                .attr("y", - 10);
+
+            // x-axis
+            svg.append("g")
+                .attr("transform", "translate(0, " + height + ")")
+                .call(d3.axisBottom(x_axis));
+
+            // y-axis
+            svg.append("g")
+                .call(d3.axisLeft(y_axis));
+
+            if (label) {
+                svg.append("text")
+                    .attr("x", (width / 2))             
+                    .attr("y", 0 - (margin.top / 3))
+                    .attr("text-anchor", "middle")  
+                    .style("font-size", "16px") 
+                    .style("text-decoration", "underline")  
+                    .text(label);
+            }
+
+            return svg;
+        }
+
+        // Put your part two code here ***********************
+        d3.csv("/data/anscombe_III.csv", function(error, data) {
+            if (error) throw error;
+
+            // scale the data
+            x.domain(d3.extent(data, getX));
+            y.domain([0, d3.max(data, getY)]);
+
+            var svg = getSVGWithLabelsAndAxes('#partTwo', x, y, "Anscombe II: Line Graph");
+
+            // sort the data by x coordinate
+            data = data.sort(function(a, b){return a[xVal] - b[xVal]});
+
+            var line = d3.line()
+                .x(getScaledX)
+                .y(getScaledY);
+
+            svg.append("path")
+                .data([data])
+                .attr("class", "line")
+                .attr("d", line)
+                .attr("stroke", "black")
+                .style("fill", "none");
+        });
+
+        // Put your part three & four code here ***********************
+        d3.csv("/data/anscombe_III.csv", function(error, data) {
+            if (error) throw error;
+
+            // scale things
+            x.domain(d3.extent(data, getX));
+            y.domain([0, d3.max(data, getY)]);
+
+            var svg = getSVGWithLabelsAndAxes('#partThree', x, y, 'Anscombe II: Interactive Scatter Plot');
+
+            svg.selectAll(".dot")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("class", "dot")
+                .attr("cx", getScaledX)
+                .attr("cy", getScaledY)
+                .attr("r", 4)
+                .attr('fill', 'black')
+                .on("click", handleClick)
+                .on("mouseover", handleMouseOver)
+                .on("mouseout", handleMouseOut);
+
+            // this function updates the <p> tag with id #scatterLabel
+            function handleClick(d, i) {
+                $("#scatterLabel").text("x: " + d[xVal] + ", y: " + d[yVal]);
+            }
+
+            // this div will be hidden at first, but will appear on hover to show
+            // tooltips
+            var div = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
+
+            // this function does two things:
+            // 1. it changes the color of a dot to red
+            // 2. it makes a tooltip appear which displays the x and y coordinates of the point
+            function handleMouseOver(d, i) {
+                d3.select(this).attr('fill', 'red');
+
+                // this makes the tooltip visible
+                div.transition()
+                    .duration(50)
+                    .style("opacity", .9);
+
+                // this sets the location and content of the tooltip to the point's location/coordinates
+                div.html("x: " + d[xVal] + ', y: ' + d[yVal])
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+            }
+
+            // this function does two things:
+            // 1. it resets the color of a dot to black
+            // 2. it makes the tooltip invisible.
+            function handleMouseOut(d, i) {
+                d3.select(this).attr('fill', 'black');
+
+                div.transition()
+                    .duration(100)
+                    .style("opacity", 0);
+            }
+        });
+
+        plotScatterSet(1, "#p5_plot_");
+        plotScatterSet(2, "#p5_plot_");
+        plotScatterSet(3, "#p5_plot_");
+        plotScatterSet(4, "#p5_plot_");
+
+        // Put your part five code here ***********************
+        // this function deals with the repeated code for displaying each of the 4
+        // datasets in anscombe's quartet.
+        function plotScatterSet(number, element_prefix) {
+            var numeral = 'I';
+            if (number == 2)
+                numeral = 'II';
+            else if (number == 3)
+                numeral = 'III';
+            else if (number == 4)
+                numeral = 'IV';
+
+            d3.csv("/data/anscombe_" + numeral + ".csv", function(error, data) {
+                if (error) throw error;
+
+                // scale the data
+                x.domain(d3.extent(data, getX));
+                y.domain([0, d3.max(data, getY)]);
+
+                var svg = getSVGWithLabelsAndAxes(element_prefix + number, x, y, "Anscombe " + numeral);
+
+                svg.selectAll(".dot")
+                    .data(data)
+                    .enter()
+                    .append("circle")
+                    .attr("class", "dot")
+                    .attr("cx", getScaledX)
+                    .attr("cy", getScaledY)
+                    .attr("r", 4);
+            });
+        }
+
+        plotScatterSet(1, "#transitions_plot_");
+        plotScatterSet(2, "#transitions_plot_");
+        plotScatterSet(3, "#transitions_plot_");
+        plotScatterSet(4, "#transitions_plot_");
+
+        var transition_plots = [
+            "#transitions_plot_1",
+            "#transitions_plot_2",
+            "#transitions_plot_3",
+            "#transitions_plot_4",
+        ]
+
+        $("#transitions_plot_1").show();
+        $("#transitions_plot_2").hide();
+        $("#transitions_plot_3").hide();
+        $("#transitions_plot_4").hide();
+
+        // Put your the transitions bell code here ***********************
+        function transitionDataSet() {
+            // these two lines find the select box for the dataset
+            // and then get its value
+            var select = document.getElementById('transitions_select');
+            var dataset = select.options[select.selectedIndex].value;
+
+            var number = 1;
+            if (dataset == 'Anscombe II')
+                number = 2;
+            if (dataset == 'Anscombe III')
+                number = 3;
+            if (dataset == 'Anscombe IV')
+                number = 4;
+
+            var plot_to_show = "#transitions_plot_" + number;
+
+            for (plot in transition_plots) {
+                $(transition_plots[plot]).hide('slow');
+            }
+
+            $(plot_to_show).show('slow');
+        }
+
+    </script>
+</body>
+
+
+</html>
