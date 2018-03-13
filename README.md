@@ -2,7 +2,7 @@
 - Josiah Buxton
 - Brian Lubars
 - Kenneth (Hunter) Wapman
-- Christopher Godley
+- Christopher (Keith) Godley
 
 # visualization 1 (Josiah):
 - grid of circles
