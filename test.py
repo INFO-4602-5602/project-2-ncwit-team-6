@@ -5,7 +5,7 @@ import re
 
 data = {}
 header = []
-with open('NCWIT-TrackingToolData-Scrubbed.csv', 'r', encoding='utf-8-sig') as csvfile:
+with open('data/NCWIT-TrackingToolData-Scrubbed.csv', 'r', encoding='utf-8-sig') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=',', quotechar='"')
     i = 0
     for row in spamreader:

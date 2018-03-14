@@ -7,7 +7,7 @@ class MaleFemaleVis():
     """
     Class that contains the functions needed to read in a csv file and filter it to provide data for a visualization
     """
-    def __init__(self, filename='NCWIT-TrackingToolData-Scrubbed.csv'):
+    def __init__(self, filename='../data/NCWIT-TrackingToolData-Scrubbed.csv'):
         self.data = {}
         self.header = []
         self.filename = filename
@@ -83,8 +83,8 @@ if __name__ == '__main__':
     vis = MaleFemaleVis()
     vis.read_data()
     vis.format_data()
-    
-    # example how to access number of candidates for a school, major, and class
+
+    # example how to access number of candidates for a school and major over all years
     print(vis.female)
     total = 0
     for key in vis.female['91']['Computer Science'].keys():
