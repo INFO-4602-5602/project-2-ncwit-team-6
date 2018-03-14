@@ -1,6 +1,6 @@
 # Team 6:
-- Josiah Buxton
-- Brian Lubars
+- Josiah (SweetCheeks) Buxton
+- Brian (Swivelbottom) Lubars
 - Kenneth (Hunter) Wapman
 - Christopher (Keith) Godley
 
