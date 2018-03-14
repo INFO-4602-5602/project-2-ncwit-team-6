@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import csv
+import json
 from nested_dict import nested_dict
 
 class MaleFemaleVis():
@@ -58,8 +59,9 @@ class MaleFemaleVis():
                     year = 'Juniors'
                 elif "Seniors" in field:
                     year = 'Seniors'
-                elif "Totals" in field:
-                    year = 'Totals'
+                # do not add in the totals
+                elif "Total" in field:
+                    continue
                 if 'Female' in field and not 'ACT' in field and not 'SAT' in field and not 'GPA' in field:
                     race = str(field.split(': ')[1].split('(')[0]).rstrip()
                     try:
@@ -79,6 +81,28 @@ class MaleFemaleVis():
                     except ValueError:
                         pass
 
+    """
+    Function to format data for the following specifications:
+        1.  Dict of # of male and female students
+        2.  Keyed in by the school
+        3.  Over all years
+    """
+    def format_1(self):
+        d = {}
+        for fkey, mkey in zip(self.female.keys(), self.male.keys()):
+            d[fkey] = sum(self.female[fkey].values_flat())
+            d[mkey] = sum(self.male[mkey].values_flat())
+        return d
+
+    """
+    Function to dump a given dict or dict of dicts to json format
+    """
+    def dump(self, data):
+        with open('data/female.json', 'w') as outfile:
+            json.dump(data, outfile)
+        with open('data/male.json', 'w') as outfile:
+            json.dump(data, outfile)
+
 if __name__ == '__main__':
     vis = MaleFemaleVis()
     vis.read_data()
@@ -91,3 +115,5 @@ if __name__ == '__main__':
         total += sum(vis.female['91']['Computer Science'][key].values_flat())
     print(total)
     print(sum(vis.female['91']['Computer Science'].values_flat()))
+    data = vis.format_1()
+    vis.dump(data)
