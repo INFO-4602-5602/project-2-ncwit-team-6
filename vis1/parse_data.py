@@ -65,7 +65,7 @@ class MaleFemaleVis():
                 if 'Female' in field and not 'ACT' in field and not 'SAT' in field and not 'GPA' in field:
                     race = str(field.split(': ')[1].split('(')[0]).rstrip()
                     try:
-                        if not isinstance(self.female[cur_institution][cur_major][year][race], int):
+                        if not isinstance(self.female[cur_institution][cur_major][school_year][year][race], int):
                             self.female[cur_institution][cur_major][school_year][year][race] = int(self.data[num][field])
                         else:
                             self.female[cur_institution][cur_major][school_year][year][race] += int(self.data[num][field])
