@@ -2,6 +2,7 @@
 
 import csv
 from nested_dict import nested_dict
+from collections import defaultdict
 
 class MaleFemaleVis():
     """
@@ -48,6 +49,7 @@ class MaleFemaleVis():
                     cur_major = self.data[num][field]
                 if field == 'School Year':
                     school_year = self.data[num][field]
+                    school_year = school_year.split('-')[0]
 
                 if "Enroll" in field:
                     year = 'Enroll'
@@ -62,34 +64,66 @@ class MaleFemaleVis():
                 elif "Totals" in field:
                     year = 'Totals'
 
+
                 if 'Female' in field and not 'ACT' in field and not 'SAT' in field and not 'GPA' in field:
                     race = str(field.split(': ')[1].split('(')[0]).rstrip()
-                    try:
-                        if not isinstance(self.female[cur_major][year][race], int):
-                            self.female[cur_major][school_year][year][race] = int(self.data[num][field])
-                        else:
-                            self.female[cur_major][school_year][year][race] += int(self.data[num][field])
-                    except ValueError:
-                        pass
+                    
+                    if self.valid_race(race):
+                        try:
+                            if not isinstance(self.female[school_year][cur_major][race], int):
+                                self.female[school_year][cur_major][race] = int(self.data[num][field])
+                            else:
+                                self.female[school_year][cur_major][race] += int(self.data[num][field])
+                        except ValueError:
+                            pass
                 elif 'Male' in field and not 'ACT' in field and not 'SAT' in field and not 'GPA' in field:
                     race = str(field.split(': ')[1].split('(')[0]).rstrip()
-                    try:
-                        if not isinstance(self.male[cur_major][school_year][year][race], int):
-                            self.male[cur_major][school_year][year][race] = int(self.data[num][field])
-                        else:
-                            self.male[cur_major][school_year][year][race] += int(self.data[num][field])
-                    except ValueError:
-                        pass
+
+                    if self.valid_race(race):
+                        try:
+                            if not isinstance(self.male[school_year][cur_major][race], int):
+                                self.male[school_year][cur_major][race] = int(self.data[num][field])
+                            else:
+                                self.male[school_year][cur_major][race] += int(self.data[num][field])
+                        except ValueError:
+                            pass
+
+    def valid_race(self, race):
+        valid_races = [
+            "White",
+            "Hispanics of any race",
+            "Asian",
+            "American Indian/Alaska Native",
+            "Two or more races",
+            "Black/African American",
+            "Native Hawaiian/Other Pacific Islander",
+        ]
+
+        if race in valid_races:
+            return True
+        else:
+            return False
+
 
 if __name__ == '__main__':
     vis = MaleFemaleVis()
     vis.read_data()
     vis.format_data()
 
+    # year --> major --> race --> #
+    totals = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+
     # example how to access number of candidates for a school and major over all years
-    print(vis.female)
+    # print(vis.female)
     total = 0
-    for key in vis.female['91']['Computer Science'].keys():
-        total += sum(vis.female['91']['Computer Science'][key].values_flat())
-    print(total)
-    print(sum(vis.female['91']['Computer Science'].values_flat()))
+    for year in vis.female.keys():
+        for major in vis.female[year].keys():
+            for race in vis.female[year][major].keys():
+                print(race)
+
+            import sys
+            sys.exit()
+
+        # total += sum(vis.female[year]['Computer Science'].values_flat())
+
+    # print(sum(vis.female['91']['Computer Science'].values_flat()))
