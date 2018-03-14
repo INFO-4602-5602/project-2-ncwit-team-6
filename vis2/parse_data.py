@@ -14,6 +14,7 @@ class MaleFemaleVis():
         self.filename = filename
         self.male = nested_dict()
         self.female = nested_dict()
+        self.parsed = nested_dict()
 
     """
     Function that opens up the csv file and reads in the data into a large dict
@@ -64,27 +65,28 @@ class MaleFemaleVis():
                 elif "Totals" in field:
                     year = 'Totals'
 
-
                 if 'Female' in field and not 'ACT' in field and not 'SAT' in field and not 'GPA' in field:
+                    gender = 'Female'
                     race = str(field.split(': ')[1].split('(')[0]).rstrip()
                     
                     if self.valid_race(race):
                         try:
-                            if not isinstance(self.female[school_year][cur_major][race], int):
-                                self.female[school_year][cur_major][race] = int(self.data[num][field])
+                            if not isinstance(self.parsed[gender][school_year][cur_major], int):
+                                self.parsed[gender][school_year][cur_major] = int(self.data[num][field])
                             else:
-                                self.female[school_year][cur_major][race] += int(self.data[num][field])
+                                self.parsed[gender][school_year][cur_major] += int(self.data[num][field])
                         except ValueError:
                             pass
                 elif 'Male' in field and not 'ACT' in field and not 'SAT' in field and not 'GPA' in field:
+                    gender = 'Male'
                     race = str(field.split(': ')[1].split('(')[0]).rstrip()
 
                     if self.valid_race(race):
                         try:
-                            if not isinstance(self.male[school_year][cur_major][race], int):
-                                self.male[school_year][cur_major][race] = int(self.data[num][field])
+                            if not isinstance(self.parsed[gender][school_year][cur_major], int):
+                                self.parsed[gender][school_year][cur_major] = int(self.data[num][field])
                             else:
-                                self.male[school_year][cur_major][race] += int(self.data[num][field])
+                                self.parsed[gender][school_year][cur_major] += int(self.data[num][field])
                         except ValueError:
                             pass
 
@@ -110,20 +112,51 @@ if __name__ == '__main__':
     vis.read_data()
     vis.format_data()
 
-    # year --> major --> race --> #
-    totals = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+    keys_set = {
+        'years' : [],
+        'majors' : []
+    }
 
-    # example how to access number of candidates for a school and major over all years
-    # print(vis.female)
-    total = 0
-    for year in vis.female.keys():
-        for major in vis.female[year].keys():
-            for race in vis.female[year][major].keys():
-                print(race)
+    male_years = list(vis.parsed['Male'].keys())
+    female_years = list(vis.parsed['Female'].keys())
 
-            import sys
-            sys.exit()
+    keys_set['years'] = list(set(male_years + female_years))
 
-        # total += sum(vis.female[year]['Computer Science'].values_flat())
+    for gender in ['Male', 'Female']:
+        for year in keys_set['years']:
+            keys_set['majors'] += list(vis.parsed[gender].get(year, []))
 
-    # print(sum(vis.female['91']['Computer Science'].values_flat()))
+    keys_set['majors'] = list(set(keys_set['majors']))
+
+    # year --> major --> #
+    totals = defaultdict(lambda: defaultdict(int))
+
+    for gender in ['Male', 'Female']:
+        gender_data = vis.parsed[gender]
+        for year in keys_set['years']:
+            year_data = gender_data[year]
+
+            for major in keys_set['majors']:
+                if year_data[major]:
+                    totals[year][major] += year_data[major]
+
+    # year --> major --> #
+    percentages = defaultdict(lambda: defaultdict(int))
+    for year in keys_set['years']:
+        for major in keys_set['majors']:
+            female_count = vis.parsed['Female'][year][major]
+            totals_count = totals[year][major]
+
+            if female_count and totals_count:
+                percentages[year][major] = female_count / totals_count
+
+    content = []
+    for year in keys_set['years']:
+        for major in keys_set['majors']:
+            if percentages[year][major]:
+                line = f"{year},{major},{percentages[year][major]}\n"
+                content.append(line)
+
+    with open('testit.csv', 'w') as f:
+        for line in content:
+            f.write(line)
