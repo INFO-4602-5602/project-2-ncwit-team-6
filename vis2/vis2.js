@@ -79,7 +79,7 @@ d3.csv("./data.csv", function(error, data) {
     x.domain(d3.extent(data, getX));
     y.domain([0, 1]);
 
-    svg = getSVGWithLabelsAndAxes('#vis3', x, y, "Percentage of Women in different majors over time");
+    svg = getSVGWithLabelsAndAxes('#vis2', x, y, "Percentage of Women in different majors over time");
 
     var line = d3.line()
         .x(getScaledX)
@@ -121,7 +121,7 @@ d3.csv("./data.csv", function(error, data) {
 
         svg.append("path")
             .data([info])
-            .attr("class", "vis3-line " + getMajorAsClass(major))
+            .attr("class", "vis2-line " + getMajorAsClass(major))
             .attr("d", line)
             .attr("stroke", colorScale(majors[major]))
             .attr("stroke-width", 3)
@@ -130,11 +130,11 @@ d3.csv("./data.csv", function(error, data) {
             .on("mouseout", lineMouseOut);
     }
 
-    svg.selectAll(".vis3-dot")
+    svg.selectAll(".vis2-dot")
         .data(data)
         .enter()
         .append("circle")
-        .attr("class", function(d, i) { return "vis3-dot " + getMajorAsClass(d.major) })
+        .attr("class", function(d, i) { return "vis2-dot " + getMajorAsClass(d.major) })
         .attr("cx", getScaledX)
         .attr("cy", getScaledY)
         .attr("r", 4)
@@ -157,10 +157,14 @@ function changeElementOpacityForDifferentMajors(class_name, major, new_opacity) 
 
     for (var i in elements) {
         var element = elements[i];
-        var classes = element.className;
+        // var classes = element.className;
 
-        if (classes) {
-            if (! (classes.baseVal.includes(major)))  {
+        if (element.className) {
+            var classes = element.className.baseVal.split(" ");
+
+            alt_major = classes.filter(c => c != class_name)[0];
+
+            if (alt_major != major) {
                 element.style.opacity = new_opacity;
             }
         }
@@ -173,8 +177,8 @@ function changeElementOpacityForDifferentMajors(class_name, major, new_opacity) 
 function lineMouseOver(l, i) {
     var major = getMajorAsClass(l[0].major);
 
-    changeElementOpacityForDifferentMajors("vis3-line", major, '.1');
-    changeElementOpacityForDifferentMajors("vis3-dot", major, '.1');
+    changeElementOpacityForDifferentMajors("vis2-line", major, '.1');
+    changeElementOpacityForDifferentMajors("vis2-dot", major, '.1');
 
     // this makes the tooltip visible
     div.transition()
@@ -195,8 +199,8 @@ function lineMouseOver(l, i) {
 function lineMouseOut(l, i) {
     var major = getMajorAsClass(l[0].major);
 
-    changeElementOpacityForDifferentMajors("vis3-line", major, '1');
-    changeElementOpacityForDifferentMajors("vis3-dot", major, '1');
+    changeElementOpacityForDifferentMajors("vis2-line", major, '1');
+    changeElementOpacityForDifferentMajors("vis2-dot", major, '1');
 
     div.transition()
         .duration(100)
