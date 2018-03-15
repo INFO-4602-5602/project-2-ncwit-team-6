@@ -1,0 +1,355 @@
+year,major,percent
+2011,Computer Systems Engineering,0.12213740458015267
+2011,Computer Science (BA),0.15186915887850466
+2011,Electrical Engineering,0.12122421823020625
+2011,Computer Information Systems,0.21577380952380953
+2011,Mechanical Engineering,0.1278729905672911
+2011,Applied Engineering Sciences,0.22253521126760564
+2011,Information Science,0.23209169054441262
+2011,Game Design,0.08264462809917356
+2011,Information Assurance/Cybersecurity,0.1346153846153846
+2011,General Engineering,0.21333333333333335
+2011,Computer Science,0.12148499210110585
+2011,Chemical Engineering,0.22210743801652894
+2011,Aerospace Engineering,0.17472474868358065
+2011,Management Information Systems,0.22916666666666666
+2011,Systems Engineering,0.2222222222222222
+2011,Web Design ,0.59375
+2011,Engineering Technology,0.11796581909128803
+2011,Computer Science + X,0.2083000798084597
+2011,Informatics,0.17656765676567657
+2011,Industrial Distribution,0.16605839416058393
+2011,Information Technology,0.10891089108910891
+2011,Civil Engineering,0.18045112781954886
+2011,Computational Biology,0.6363636363636364
+2011,Biosystems Engineering,0.4116222760290557
+2011,CS and/or Eng Multiple Majors (data submitted in aggregation),0.1565123789020452
+2011,Electrical and Computer Engineering,0.13817567567567568
+2011,Computer Software and Media Applications,0.22996515679442509
+2011,Applied Information Technology,0.17907081641858366
+2011,Electrical, Electronics and Communications Engineering,0.1382488479262673
+2011,Software Engineering,0.07692307692307693
+2011,Computer Engineering,0.1051230871590153
+2011,Electrical & Computer Engineering,0.17032967032967034
+2011,Computer Science (BS),0.11761835041483651
+2011,Materials Science and Engineering,0.2756756756756757
+2004,Computer Science (BA),0.15625
+2004,Networking,0.04602510460251046
+2004,Electrical Engineering,0.10067114093959731
+2004,Computer Information Systems,0.3055555555555556
+2004,Mechanical Engineering,0.11433649289099526
+2004,Information Science,0.21341463414634146
+2004,Computer Science,0.1328623518687329
+2004,Computer Science + X,0.18604651162790697
+2004,Information Technology,0.1094257854821235
+2004,Civil Engineering,0.19776119402985073
+2004,CS and/or Eng Multiple Majors (data submitted in aggregation),0.12
+2004,Computer Science / Engineering,0.08994197292069632
+2004,Computer Engineering,0.13002364066193853
+2004,Electrical & Computer Engineering,0.1804949053857351
+2004,Computer Science (BS),0.12
+2006,Computer Science (BA),0.1411764705882353
+2006,Networking,0.03713527851458886
+2006,Electrical Engineering,0.10671067106710672
+2006,Computer Information Systems,0.16279069767441862
+2006,Mechanical Engineering,0.09917590224495595
+2006,Information Science,0.17777777777777778
+2006,Computer Science,0.12262859378055936
+2006,Management Information Systems,0.2361111111111111
+2006,Engineering Technology,0.07567567567567568
+2006,Computer Science + X,0.08333333333333333
+2006,Informatics,0.14444444444444443
+2006,Industrial Distribution,0.213768115942029
+2006,Information Technology,0.10497981157469717
+2006,Civil Engineering,0.22690437601296595
+2006,Bioinformatics,0.3333333333333333
+2006,Electrcal & Computer Engineering,0.2078804347826087
+2006,CS and/or Eng Multiple Majors (data submitted in aggregation),0.13552132172359901
+2006,Computer Science / Engineering,0.06338028169014084
+2006,Software Engineering,0.061224489795918366
+2006,Computer Engineering,0.072
+2006,Computer Science (BS),0.13636363636363635
+2003,Electrical Engineering,0.10552763819095477
+2003,Computer Information Systems,0.25806451612903225
+2003,Mechanical Engineering,0.11223842739378567
+2003,Computer Science,0.16182572614107885
+2003,Civil Engineering,0.22709163346613545
+2003,CS and/or Eng Multiple Majors (data submitted in aggregation),0.14952561669829223
+2003,Computer Engineering,0.17630057803468208
+2003,Electrical & Computer Engineering,0.19386331938633194
+2010,Computer Systems Engineering,0.1044776119402985
+2010,Computer Science (BA),0.17027027027027028
+2010,Electrical Engineering,0.12430323299888517
+2010,Computer Information Systems,0.15458015267175573
+2010,Mechanical Engineering,0.12798311990686845
+2010,Applied Engineering Sciences,0.2621082621082621
+2010,Information Science,0.2403560830860534
+2010,General Engineering,0.1
+2010,Computer Science,0.12833289159819772
+2010,Chemical Engineering,0.21643518518518517
+2010,Aerospace Engineering,0.18008948545861297
+2010,Management Information Systems,0.2005813953488372
+2010,Systems Engineering,0.22018348623853212
+2010,Web Design ,0.6363636363636364
+2010,Engineering Technology,0.13877028181041845
+2010,Computer Science + X,0.16759776536312848
+2010,Informatics,0.16225749559082892
+2010,Industrial Distribution,0.196113074204947
+2010,Information Technology,0.08511941212492345
+2010,Civil Engineering,0.2092097782831154
+2010,Computational Biology,0.3333333333333333
+2010,Biosystems Engineering,0.34316353887399464
+2010,CS and/or Eng Multiple Majors (data submitted in aggregation),0.1465528067311315
+2010,Electrical and Computer Engineering,0.11456147712966848
+2010,Computer Software and Media Applications,0.23408845738942827
+2010,Applied Information Technology,0.18693918245264207
+2010,Electrical, Electronics and Communications Engineering,0.11693548387096774
+2010,Software Engineering,0.026785714285714284
+2010,Computer Engineering,0.10635949786177404
+2010,Electrical & Computer Engineering,0.2100456621004566
+2010,Computer Science (BS),0.11180832857957787
+2010,Materials Science and Engineering,0.2787878787878788
+2013,Computer Systems Engineering,0.10089686098654709
+2013,Computer Science (BA),0.1313035204567079
+2013,Electrical Engineering,0.11185859385305369
+2013,Computer Information Systems,0.22807017543859648
+2013,Mechanical Engineering,0.13069139966273188
+2013,Information Science,0.1861598440545809
+2013,Game Design,0.10227272727272728
+2013,Information Assurance/Cybersecurity,0.020833333333333332
+2013,General Engineering,0.14692982456140352
+2013,Computer Science,0.13926644532060595
+2013,Chemical Engineering,0.25831399845320957
+2013,Aerospace Engineering,0.15282392026578073
+2013,Management Information Systems,0.19491525423728814
+2013,Systems Engineering,0.26666666666666666
+2013,Web Design ,0.6
+2013,Engineering Technology,0.12367115520907158
+2013,Computer Science + X,0.24215686274509804
+2013,Informatics,0.20363636363636364
+2013,Industrial Distribution,0.1617391304347826
+2013,Information Technology,0.13770826249574974
+2013,Civil Engineering,0.224
+2013,Computational Biology,0.64
+2013,CS and/or Eng Multiple Majors (data submitted in aggregation),0.155805060613457
+2013,Electrical and Computer Engineering,0.1373250894890986
+2013,Computer Software and Media Applications,0.26912181303116145
+2013,Applied Information Technology,0.19229065130704476
+2013,Electrical, Electronics and Communications Engineering,0.1346153846153846
+2013,Software Engineering,0.0861344537815126
+2013,Computer Engineering,0.09718172983479106
+2013,Electrical & Computer Engineering,0.16356877323420074
+2013,Computer Science (BS),0.13561113067981684
+2015,General Engineering ,0.1807909604519774
+2015,Computer Science (BA),0.14105504587155962
+2015,Applied Computer Science,0.03333333333333333
+2015,Electrical Engineering,0.16049382716049382
+2015,Computer Technology,0.18686868686868688
+2015,Information Sciences,0.07692307692307693
+2015,Information Technology ,0.2846975088967972
+2015,Manufacturing Engineering ,0.07462686567164178
+2015,Computer and Information Systems,0.057692307692307696
+2015,Computer Information Systems,0.24479166666666666
+2015,Mechanical Engineering,0.14012590347400328
+2015,Information Science,0.16472303206997085
+2015,Game Design,0.18867924528301888
+2015,Information Assurance/Cybersecurity,0.20657276995305165
+2015,Computer Science,0.17291261563844204
+2015,Aerospace Engineering,0.175054704595186
+2015,Management Information Systems,0.2482394366197183
+2015,Web Design ,0.625
+2015,Engineering Technology,0.15855733242599523
+2015,Data Science,0.345679012345679
+2015,Computer Science ,0.13333333333333333
+2015,Computer Science + X,0.2559241706161137
+2015,Informatics,0.21390374331550802
+2015,Industrial Distribution,0.2048780487804878
+2015,Information Technology,0.17328042328042328
+2015,Civil Engineering,0.25890529973935705
+2015,Computational Biology,0.6875
+2015,CS and/or Eng Multiple Majors (data submitted in aggregation),0.1839389226636505
+2015,Electrical and Computer Engineering,0.14404049700874366
+2015,Computer Software and Media Applications,0.29987129987129985
+2015,Computer Science / Engineering,0.11155913978494623
+2015,Electrical, Electronics and Communications Engineering,0.16237113402061856
+2015,Software Engineering,0.08819875776397515
+2015,Computer Engineering,0.0999657651489216
+2015,Electrical & Computer Engineering,0.20168067226890757
+2015,Computer Science (BS),0.17507418397626112
+2001,CS and/or Eng Multiple Majors (data submitted in aggregation),0.12552011095700416
+2016,General Engineering ,0.18373493975903615
+2016,Electrical Engineering,0.12063282794990111
+2016,Mechanical Engineering,0.14375244810027418
+2016,Information Science,0.18309859154929578
+2016,Computer Science,0.23277710450265685
+2016,Management Information Systems,0.1383399209486166
+2016,Web Design ,0.5714285714285714
+2016,Computer Science + X,0.4955357142857143
+2016,Information Technology,0.18403115871470302
+2016,Civil Engineering,0.2498048399687744
+2016,CS and/or Eng Multiple Majors (data submitted in aggregation),0.16901408450704225
+2016,Electrical and Computer Engineering,0.13949275362318841
+2016,Computer Software and Media Applications,0.3346774193548387
+2016,Software Engineering,0.100418410041841
+2016,Computer Engineering,0.10995024875621891
+2016,Electrical & Computer Engineering,0.19156540385989992
+2002,CS and/or Eng Multiple Majors (data submitted in aggregation),0.10571768910065515
+2008,Computer Systems Engineering,0.09627329192546584
+2008,Mathematics and Computer Science,0.3333333333333333
+2008,Computer Science (BA),0.1878453038674033
+2008,Electrical Engineering,0.09807305148116192
+2008,Computer Information Systems,0.17661691542288557
+2008,Mechanical Engineering,0.09852424455375966
+2008,Applied Engineering Sciences,0.3171428571428571
+2008,Information Science,0.25396825396825395
+2008,Information Assurance/Cybersecurity,0.2222222222222222
+2008,Computer Science,0.12064759370148592
+2008,Chemical Engineering,0.2537688442211055
+2008,Management Information Systems,0.22448979591836735
+2008,Systems Engineering,0.6923076923076923
+2008,Engineering Technology,0.09069212410501193
+2008,Informatics,0.13533834586466165
+2008,Industrial Distribution,0.19525547445255476
+2008,Information Technology,0.07769230769230769
+2008,Civil Engineering,0.18487972508591066
+2008,Biosystems Engineering,0.3
+2008,Bioinformatics,0.37735849056603776
+2008,CS and/or Eng Multiple Majors (data submitted in aggregation),0.13987341772151898
+2008,Computer Software and Media Applications,0.1774033696729435
+2008,Computer Science / Engineering,0.04908675799086758
+2008,Computer Engineering,0.0969640644361834
+2008,Electrical & Computer Engineering,0.2026315789473684
+2008,Computer Science (BS),0.09473684210526316
+2008,Materials Science and Engineering,0.2471264367816092
+2012,Computer Systems Engineering,0.10046728971962617
+2012,Computer Science (BA),0.16306483300589392
+2012,Electrical Engineering,0.10846281490420878
+2012,Computer Information Systems,0.1758957654723127
+2012,Mechanical Engineering,0.12132037725064304
+2012,Information Science,0.2833333333333333
+2012,Game Design,0.05
+2012,Information Assurance/Cybersecurity,0.10344827586206896
+2012,General Engineering,0.1111111111111111
+2012,Computer Science,0.13337219847130458
+2012,Chemical Engineering,0.23841059602649006
+2012,Aerospace Engineering,0.16228467815049863
+2012,Management Information Systems,0.26002055498458376
+2012,Systems Engineering,0.3050847457627119
+2012,Web Design ,0.5151515151515151
+2012,Engineering Technology,0.11907514450867052
+2012,Computer Science + X,0.21720116618075802
+2012,Informatics,0.17397881996974282
+2012,Industrial Distribution,0.1625441696113074
+2012,Information Technology,0.12173563680192849
+2012,Civil Engineering,0.22306238185255198
+2012,Computational Biology,0.6666666666666666
+2012,CS and/or Eng Multiple Majors (data submitted in aggregation),0.15465810004589262
+2012,Electrical and Computer Engineering,0.1422498364944408
+2012,Computer Software and Media Applications,0.22982216142270862
+2012,Applied Information Technology,0.179421768707483
+2012,Electrical, Electronics and Communications Engineering,0.16666666666666666
+2012,Software Engineering,0.08551483420593368
+2012,Computer Engineering,0.10038558702300227
+2012,Electrical & Computer Engineering,0.1834862385321101
+2012,Computer Science (BS),0.12054681027340514
+2007,Computer Systems Engineering,0.1365079365079365
+2007,Mathematics and Computer Science,0.5
+2007,Computer Science (BA),0.16730038022813687
+2007,Networking,0.04195804195804196
+2007,Electrical Engineering,0.10650128314798973
+2007,Computer Information Systems,0.25
+2007,Mechanical Engineering,0.0902555910543131
+2007,Information Science,0.2304147465437788
+2007,Computer Science,0.11378513669618791
+2007,Management Information Systems,0.2426470588235294
+2007,Engineering Technology,0.09738717339667459
+2007,Computer Science + X,0.12962962962962962
+2007,Informatics,0.1514705882352941
+2007,Industrial Distribution,0.19288389513108614
+2007,Information Technology,0.11183355006501951
+2007,Civil Engineering,0.23003194888178913
+2007,Bioinformatics,0.25
+2007,CS and/or Eng Multiple Majors (data submitted in aggregation),0.1603960396039604
+2007,Computer Science / Engineering,0.054272517321016164
+2007,Software Engineering,0.0625
+2007,Computer Engineering,0.1
+2007,Electrical & Computer Engineering,0.2013986013986014
+2007,Computer Science (BS),0.11961722488038277
+2014,Computer Systems Engineering,0.11405295315682282
+2014,Computer Science (BA),0.1490082244799226
+2014,Electrical Engineering,0.12272396212672979
+2014,Information Sciences,0.3076923076923077
+2014,Computer Information Systems,0.10382513661202186
+2014,Mechanical Engineering,0.14167639924535083
+2014,Information Science,0.19858156028368795
+2014,Computer and Information Sciences,0.17669172932330826
+2014,Game Design,0.14150943396226415
+2014,Information Assurance/Cybersecurity,0.16753926701570682
+2014,General Engineering,0.2417910447761194
+2014,Computer Science,0.15762081784386617
+2014,Chemical Engineering,0.2361308677098151
+2014,Aerospace Engineering,0.13822393822393822
+2014,Management Information Systems,0.20764552562988706
+2014,Web Design ,0.6333333333333333
+2014,Engineering Technology,0.13028439661798616
+2014,Data Science,0.46153846153846156
+2014,Computer Science + X,0.24545821558336697
+2014,Informatics,0.24352879027997887
+2014,Industrial Distribution,0.1648
+2014,Information Technology,0.15080411283944106
+2014,Civil Engineering,0.2305863708399366
+2014,Computational Biology,0.6923076923076923
+2014,CS and/or Eng Multiple Majors (data submitted in aggregation),0.1637839167144848
+2014,Information Science ,0.26666666666666666
+2014,Electrical and Computer Engineering,0.1407146007940009
+2014,Computer Software and Media Applications,0.29523809523809524
+2014,Electrical, Electronics and Communications Engineering,0.125
+2014,Software Engineering,0.10557053009883198
+2014,Computer Engineering,0.0969211149571871
+2014,Electrical & Computer Engineering,0.19194312796208532
+2014,Computer Science (BS),0.13981603153745073
+2009,Computer Systems Engineering,0.11692307692307692
+2009,Computer Science (BA),0.10059171597633136
+2009,Electrical Engineering,0.1273615635179153
+2009,Computer Information Systems,0.19770114942528735
+2009,Mechanical Engineering,0.13256675852893662
+2009,Applied Engineering Sciences,0.288961038961039
+2009,Information Science,0.18620689655172415
+2009,General Engineering,0.20212765957446807
+2009,Computer Science,0.12309746328437918
+2009,Chemical Engineering,0.23536895674300254
+2009,Management Information Systems,0.2751677852348993
+2009,Systems Engineering,0.23529411764705882
+2009,Engineering Technology,0.1521472392638037
+2009,Informatics,0.16167664670658682
+2009,Industrial Distribution,0.21731448763250882
+2009,Information Technology,0.08776779543883897
+2009,Civil Engineering,0.1978818283166109
+2009,Biosystems Engineering,0.3253731343283582
+2009,Bioinformatics,0.34375
+2009,CS and/or Eng Multiple Majors (data submitted in aggregation),0.15421092564491654
+2009,Electrical and Computer Engineering,0.10636942675159236
+2009,Computer Software and Media Applications,0.21477272727272728
+2009,Computer Science / Engineering,0.09109518935516889
+2009,Applied Information Technology,0.17822899041173154
+2009,Software Engineering,0.015151515151515152
+2009,Computer Engineering,0.11220580186097427
+2009,Electrical & Computer Engineering,0.18596491228070175
+2009,Computer Science (BS),0.13861386138613863
+2009,Materials Science and Engineering,0.23841059602649006
+2005,Computer Science (BA),0.14516129032258066
+2005,Networking,0.050314465408805034
+2005,Electrical Engineering,0.1252927400468384
+2005,Computer Information Systems,0.16326530612244897
+2005,Mechanical Engineering,0.09994121105232216
+2005,Information Science,0.16891891891891891
+2005,Computer Science,0.1252533441426834
+2005,Computer Science + X,0.13513513513513514
+2005,Informatics,0.13090909090909092
+2005,Information Technology,0.10384615384615385
+2005,Civil Engineering,0.19538188277087035
+2005,CS and/or Eng Multiple Majors (data submitted in aggregation),0.12616229923922231
+2005,Computer Science / Engineering,0.07326732673267326
+2005,Computer Engineering,0.11530398322851153
+2005,Electrical & Computer Engineering,0.16939890710382513
+2005,Computer Science (BS),0.15
