@@ -2,7 +2,10 @@
 
 import csv
 import json
-from nested_dict import nested_dict
+#from nested_dict import nested_dict
+from collections import defaultdict
+
+nested_dict = lambda: defaultdict(nested_dict)
 
 class MaleFemaleVis():
     """
@@ -47,9 +50,23 @@ class MaleFemaleVis():
                 school_year = self.data[num]['School Year']
                 school_year = school_year.split('-')[0]
                 major = self.data[num]['Major Program Name']
-
-
+                if not self.is_computer_science(major):
+                    continue
+                print("[{}, Male]: i:{}, y:{}, m:{}".format(num, institution, school_year, major))
                 aggregate = self.get_student_numbers('Male', num)
+                self.male[institution][school_year] = aggregate
+                print(aggregate.keys())
+                for year in aggregate.keys():
+                    total = 0
+                    for race in aggregate[year].keys():
+                        try:
+                            total += int(aggregate[year][race])
+                            print(aggregate[year][race])
+                        except ValueError:
+                            # missing data value!
+                            #continue
+                            pass
+                    print("  year:{}, total:{}".format(year, total))
             except KeyError:
                 #for key in self.data[num].keys():
                 #    print(key)
@@ -58,9 +75,24 @@ class MaleFemaleVis():
                 #print(self.data[num].keys())
                 print("Dammit!")
 
+    def write_data(self, gender):
+        outfile = "filtered-v3-" + gender + ".csv"
+        if gender is "Male":
+            data = self.male
+        else:
+            data = self.female
+        f = open(outfile, 'w', encoding='utf-8')
+        writer = csv.writer(f, delimiter=',', quotechar='"')
+        for item in data:
+            # filter data, write ones that are appropriate
+            row = []
+            writer.writerow(row)
+
     def get_student_numbers(self, gender, record_num):
         # extract data from relevant fields
+        d = defaultdict(dict)
         for field in self.header:
+            #print("  {}, {}, {}".format(record_num, gender, field))
             #pattern = ""
             #regex = re.compile(pattern)
             #result = prog.match(string)
@@ -75,30 +107,31 @@ class MaleFemaleVis():
                     year = 'Juniors'
                 elif "Seniors" in field:
                     year = 'Seniors'
-                elif "Totals" in field:
-                    year = 'Totals'
+                #elif "Totals" in field:
+                #    year = 'Totals'
                 else:
                     continue
                 race = str(field.split(': ')[1].split('(')[0]).strip()
-                print(race)
+                if self.valid_race(race):
+                    try:
+                        value = int(self.data[record_num][field])
+                        d[year][race] = value
+                        if not isinstance(d[year]['Total'], int):
+                            d[year]['Total'] = value
+                        else:
+                            d[year]['Total'] += value
+                    except ValueError:
+                        print("Oh noes")
+                        pass
+        return d
 
-            """
-            Enroll, Female: Asian (Enrl F)
-            """
-
-            """
-            year0 = 'Enroll'
-            elif "Freshmen" in field:
-            year1 = 'Freshmen'
-            elif "Sophomores" in field:
-            year2 = 'Sophomores'
-        elif "Juniors" in field:
-            year3 = 'Juniors'
-            elif "Seniors" in field:
-            year4 = 'Seniors'
-
-            # split data into M and F
-            """
+    def is_computer_science(self, major):
+        if "Computer Science" in major:
+            return True
+        elif "CS" in major:
+            return True
+        else:
+            return False
 
     def valid_race(self, race):
         valid_races = [
@@ -120,6 +153,7 @@ if __name__ == '__main__':
     vis = MaleFemaleVis()
     vis.read_data()
     vis.format_data()
+    vis.write_data()
 
     # year --> major --> race --> #
     #totals = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
