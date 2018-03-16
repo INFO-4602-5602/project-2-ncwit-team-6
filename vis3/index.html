@@ -1,8 +1,6 @@
 <html>
     <head>
     <title>Project 2</title>
-    <link rel="stylesheet" type="text/css" href="project1.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!--Put your D3 import statement between these two lines-->
         <script src="https://d3js.org/d3.v4.min.js"></script>
     <!--Put your D3 import statement between these two lines-->
@@ -10,16 +8,23 @@
 
 <body>
     <div id="plotContainer">
-        <h1>Vis #3: CS Major Retention Across Degree (4-years) </h1>
+        <h1>Vis #3: CS-Major Retention over course of 4-Year Degree, by Gender</h1>
         <p>This looks at how the enrollment in Computer Science degrees changes across a standard 4 years. This is tracked per-Institution, and is further split into Male and Female.</p>
         <p>To view a different institution, pick the desired institution number from the drop-down.</p>
         <form id="v3form">
             Institution, Starting Year:
-            <select name="inst">
+            <select name="inst" id="inst">
+              <option>Pick an (Institution, Year)</option>
             </select> 
         </form>
+        <h3></h3>
         <div id="scatterplot">
         </div>
+    </div>
+
+
+    <div id="tooltip" style="opacity:0; position: absolute; top: 0; right: 0; text-align: center; margin:0; padding:0.5em; background:lightgreen; border:1px; border-style:solid; border-color:black; width:8em">
+        <p style="margin:0em;"></p>
     </div>
 
     

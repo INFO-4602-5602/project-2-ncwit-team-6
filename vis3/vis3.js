@@ -6,6 +6,9 @@ var margin = {top: 40, right: 20, bottom: 30, left: 50};
 var width = d3.min([window.innerWidth - 25, 960]);
 var height = 500;
 
+var activeData;
+var activeScale;
+
 var vis3Data;
 d3.csv("filtered-v3-data.csv", function(error, data) {
     if (error) throw error;
@@ -32,10 +35,10 @@ function makeDropMenu(data, col1, col2) {
         .attr("value", function(d) {return d[col1] + ',' + d[col2];});
     // read all the institutions in
     // sort the institutions
-    
+
     // attach event to dropdown menu
-    d3.select(menu).on("change", handleMenuClick(menu));
-    
+    d3.select(menu).on("change", function() {handleMenuClick()});
+
     // add svg canvas to page
     d3.select("#scatterplot").append("svg")
 }
@@ -47,7 +50,6 @@ function handleMenuClick() {
     res = value.split(",")
     inst = res[0]
     year = res[1]
-    
     makePlot(vis3Data, inst, year)
 }
 
@@ -83,19 +85,7 @@ function plotGenderData(gender, x, y_data, scale, svg) {
     } else {
         fill = "blue";
     }
-    // Add the scatterplot points
-    svg.selectAll("circle") // create set
-      .data(x) // bind data
-      .enter() // enter data so we can use it
-      .append("circle") // append circle for each datapoint
-      .attr("r", 7)
-      .attr("cx", function(d) {return scale.x(d);})
-      .attr("cy", function(d) {return scale.y(y_data[d])})
-      .attr("fill", fill)
-      //.on("mouseover", handleScatterDotMouseoverEvent)
-      //.on("mouseout", handleScatterDotMouseoutEvent)
-      //.on("click", handleScatterDotClickEvent);
-      
+
     // add the line connecting the points
     var line = d3.line()
         .x(function(d) {return scale.x(d);})
@@ -106,6 +96,19 @@ function plotGenderData(gender, x, y_data, scale, svg) {
         .style("fill", "none")
         .style("stroke", fill)
         .style("stroke-width", "2px");
+
+    // Add the scatterplot points
+    svg.selectAll("circle." + gender)
+      .data(x) // bind data
+      .enter() // enter data so we can use it
+      .append("circle")
+      .attr("class", gender)
+      .attr("r", 7)
+      .attr("cx", function(d) {return scale.x(d);})
+      .attr("cy", function(d) {return scale.y(y_data[d])})
+      .attr("fill", fill)
+      .on("mouseover", handleScatterDotMouseoverEvent)
+      .on("mouseout", handleScatterDotMouseoutEvent)
 }
 
 function makePlot(data, inst, year) {
@@ -128,12 +131,19 @@ function makePlot(data, inst, year) {
             break;
         }
     }
-    console.log(f_data);
-    
+
     scale = setPlotSize(x, m_data, f_data, 1);
+    activeData = [x, m_data, f_data];
+    activeScale = scale;
+
+    // update the title text
+    gradClass = +year + 4;
+    title = d3.select("#plotContainer h3");
+    title.text("CS-student Retention in Institution " + inst + ", for Graduating Class of " + gradClass);
 
     // svg tag to document
-    var svg = d3.select("#scatterplot").append("svg")
+    canvas = d3.selectAll("#scatterplot svg g").remove();
+    var svg = d3.select("#scatterplot svg")
                 .attr("width", scale.svg_width)
                 .attr("height", scale.svg_height)
                 .append("g")
@@ -146,7 +156,7 @@ function makePlot(data, inst, year) {
     // Add the X Axis
     svg.append("g")
       .attr("transform", "translate(0, " + scale.height + ")")
-      .call(d3.axisBottom(scale.x));
+      .call(d3.axisBottom(scale.x).ticks(x.length));
 
     // Add the Y Axis
     svg.append("g")
@@ -163,3 +173,37 @@ function makePlot(data, inst, year) {
       .text("Number of Students")
       .attr("y", -10);
 }
+
+function handleScatterDotMouseoverEvent(d, i) {
+    // change color on mouseover
+    d3.select(this).attr("fill", "black");
+    gender = d3.select(this).attr("class");
+    if(gender == "Male") {
+        num = activeData[1][d];
+    } else {
+        num = activeData[2][d];
+    }
+    d3.select("body #tooltip")
+      .style("opacity", 0.9)
+      .style("left", (d3.event.pageX + 5) + "px")
+      .style("top", (d3.event.pageY + 5) + "px");
+    d3.select("body #tooltip p")
+      .text("Gender: " + gender + ", \nYear: " + d + ",\nStudents: " + num);
+}
+
+function handleScatterDotMouseoutEvent() {
+    // change color back on mouseout
+    gender = d3.select(this).attr("class");
+    if(gender == "Male") {
+        fill = "blue";
+    } else {
+        fill = "female";
+    }
+    d3.select(this).attr("fill", fill);
+    // bell 1: tooltip disappear
+    d3.select("body #tooltip")
+      .style("opacity", 0)
+      .style("left", "0px")
+      .style("top", "0px");
+}
+
