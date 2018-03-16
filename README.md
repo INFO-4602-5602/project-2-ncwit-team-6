@@ -24,3 +24,8 @@ The visualization is titled "Percentage of Women in different majors over time".
 - look at single institution
     - compare institutions?
     - look at single class (i.e., stats years 2011-2015)
+
+# visualization (Additional):
+For our additional visualization, I decided to keep it simple and display the ratio of students for each type of degree at all schools. There are 3 plots actually, one showing the ratio of female students, one for male students, and one for total students. 
+
+
