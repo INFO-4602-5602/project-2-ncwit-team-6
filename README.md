@@ -4,6 +4,9 @@
 - Kenneth (Hunter) Wapman
 - Christopher (Keith) Godley
 
+# How to run it:
+- start up a server (python or otherwise) and open up the index page at the root of the directory. you can navigate to the visualizations from here!
+
 # visualization 1 (Josiah):
 - grid of circles
     - circle = school
