@@ -125,13 +125,19 @@ body {
   position: absolute;
   z-index: 1;
   width: 50%;
+  left: 0px;
+  top: 0px;
 }
+
 #canvas{
     position: inherit;
     display: block;
     margin: auto;
     height: 150px;
     width: 200px;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
 }
 .tab {
        display:inline-block;

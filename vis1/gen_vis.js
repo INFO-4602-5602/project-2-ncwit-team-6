@@ -39,24 +39,9 @@ var select_time_title = document.getElementById("select_time_title");
 var mouse = new THREE.Vector2(), INTERSECTED;
 var radius = 600, theta = 0;
 var frustumSize = 1000;
-var keyboard = new THREEx.KeyboardState();
 
 init();
 animate();
-
-// Handles for the tooltip
-$(document).ready(function () {
-  $('info').tooltip({
-       disabled: true,
-       close: function( event, ui ) { $(this).tooltip('disable'); }
-      });
-});
-
-$(document).ready(function () {
-  $('info').on('click', function () {
-     $(this).tooltip('enable').tooltip('open');
-   });
-});
 
 $(document).ready(function () {
   $('#select_color').change(function() {
@@ -284,7 +269,6 @@ function init() {
 
   // Bind 'm' to enter full screen mode
   THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
-  THREEx.WindowResize(renderer, camera);
 
   var aspect = window.innerWidth / window.innerHeight;
   camera = new THREE.OrthographicCamera( frustumSize * aspect / - 2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, 0, 1200 );
@@ -308,6 +292,15 @@ function init() {
 
 }
 
+// This function adds a listener for the keyboard and does appropriate functions
+document.addEventListener('keydown', (event) => {
+  const keyName = event.key;
+  if (keyName == 'm') {
+    onWindowResize();
+    console.log('hi');
+  }
+});
+
 // This function reorients the generated visualization on window resize
 function onWindowResize() {
   var aspect = window.innerWidth / window.innerHeight;
@@ -316,6 +309,7 @@ function onWindowResize() {
   camera.top    =   frustumSize / 2;
   camera.bottom = - frustumSize / 2;
   camera.updateProjectionMatrix();
+  renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
@@ -352,8 +346,7 @@ function render() {
   camera.updateMatrixWorld();
 
   // find intersections and set the geometry id of the selected object
-  raycaster.setFromCamera( mouse, camera );
-
+  raycaster.setFromCamera( mouse, camera );1
   var intersects = raycaster.intersectObjects( scene.children );
 
   if ( intersects.length > 0 ) {
