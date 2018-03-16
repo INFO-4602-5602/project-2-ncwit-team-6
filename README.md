@@ -14,10 +14,9 @@
         - year will move automatically
 
 # visualization 2 (Hunter):
+- title: "Percentage of Women in different majors over time"
 - change in percentage of gender as over time
-    - maybe: can choose ethnicity?
-        - or plot multiple
-    - maybe: filter by major?
+    - by major?
 
 # visualization 3 (Brian):
 - look at single institution
