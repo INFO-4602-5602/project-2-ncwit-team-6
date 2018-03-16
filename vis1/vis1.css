@@ -1,0 +1,139 @@
+body {
+  font-family: Monospace;
+  background-color: #f0f0f0;
+  margin: 0px;
+  overflow: hidden;
+}
+
+#title{
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  text-align: center;
+  align: center;
+  z-index: 2;
+}
+
+#ratio{
+  position: absolute;
+  left: 2px;
+  bottom: 10px;
+  width: 100%;
+  text-align: right;
+  z-index: 50;
+}
+
+#info{
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  width: 200px;
+  word-wrap: break-word;
+  text-align: right;
+  z-index: 2;
+}
+
+#select_data_title{
+  position: absolute;
+  left: 2px;
+  top: 10px;
+  width: 200px;
+  word-wrap: break-word;
+  text-align: left;
+  z-index: 2;
+}
+
+#select_data{
+  left: 2px;
+  top: 30px;
+  width: 15%;
+  align = left;
+  z-index: 50;
+  position: relative;
+}
+
+#select_color_title{
+  position: absolute;
+  left: 2px;
+  top: 70px;
+  width: 200px;
+  word-wrap: break-word;
+  text-align: left;
+  z-index: 2;
+}
+
+#select_color{
+  left: 2px;
+  top: 90px;
+  width: 15%;
+  align = left;
+  z-index: 50;
+  position: absolute;
+}
+
+#select_ctype_title{
+  position: absolute;
+  left: 2px;
+  top: 120px;
+  width: 200px;
+  word-wrap: break-word;
+  text-align: left;
+  z-index: 2;
+}
+
+#select_ctype{
+  left: 2px;
+  top: 140px;
+  width: 15%;
+  align = left;
+  z-index: 50;
+  position: absolute;
+}
+
+#select_time_title{
+  position: absolute;
+  left: 2px;
+  top: 180px;
+  width: 200px;
+  word-wrap: break-word;
+  text-align: left;
+  z-index: 2;
+  display: none;
+}
+
+#select_time{
+  left: 2px;
+  top: 200px;
+  width: 15%;
+  align = left;
+  z-index: 50;
+  position: absolute;
+  display: none;
+}
+
+#help{
+  position: absolute;
+  left: 2px;
+  bottom: 10px;
+  width: 300px;
+  word-wrap: break-word;
+  text-align: left;
+  z-index: 2;
+}
+
+#container{
+  position: absolute;
+  z-index: 1;
+  width: 50%;
+}
+#canvas{
+    position: inherit;
+    display: block;
+    margin: auto;
+    height: 150px;
+    width: 200px;
+}
+.tab {
+       display:inline-block;
+       margin-left: 40px;
+}
