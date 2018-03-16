@@ -58,12 +58,14 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('#select_data').change(function() {
     update_data();
+    color_spheres();
   });
 });
 
 $(document).ready(function () {
   $('#select_time').change(function() {
     update_data();
+    color_spheres();
   });
 });
 
@@ -271,7 +273,7 @@ function init() {
   THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
 
   var aspect = window.innerWidth / window.innerHeight;
-  camera = new THREE.OrthographicCamera( frustumSize * aspect / - 2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, 0, 1200 );
+  camera = new THREE.OrthographicCamera( frustumSize * aspect / - 2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / - 2, -300, 1200 );
 
   update_scene();
 
