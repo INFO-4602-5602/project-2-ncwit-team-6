@@ -73,7 +73,32 @@ The visualization is titled "Percentage of Women in different majors over time".
     - compare institutions?
     - look at single class (i.e., stats years 2011-2015)
 
-# visualization (Additional):
-For our additional visualization, I decided to keep it simple and display the ratio of students for each type of degree at all schools. There are 3 plots actually, one showing the ratio of female students, one for male students, and one for total students. 
+# visualization (Chris):
 
+For our additional visualization, I decided to keep it simple and display the 
+ratio of Asian students for each type of degree at all schools. There are 3 plots 
+actually, one showing the ratio of female students, one for male students, and 
+one for total students. The specific metrics on display here reflect the asian
+student population. 
 
+Design Process:
+
+The idea of these figures is to provide quick, intuitive insight into the Asian
+student populous. The viewer can easily see the distribution among each 
+demographic in a convenient and familiar pie chart. Labels are turned off by 
+default as a design choice so as to allow the user to peak their interest and 
+mouse over for interactive information. The type of degree that each slice
+represents is provided by a mouseover event, and dissapears when you mouse 
+away. The pie charts are a good way to view a static picture of this data.
+
+Thinking of ways to analyze this data interactively was my main focus in designing
+these visualizations. I spent more time engaging with the cleaning process, as I
+knew this would provide me the flexibility of generating answers to any questions
+I could come up with. I developed a scrubber script that took headers as arguments 
+and that acted to sort the desired data into the three datasets for the female,
+male, and total student demographics. In experimenting with this, I generated some
+interesting pie charts that I ended up keeping for the final visualization. In the 
+future, this would be a great backend to generate user-specified pie charts, with
+an interactive web client as the front end. I used Python to scrub the data and 
+output it to the required CSVs, but I then used D3 and Javascript to generate
+the visualizations and display them on an HTML page. 
