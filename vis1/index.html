@@ -1,15 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Male/Female Ratio of Different Schools Across the US</title>
-    <link rel="stylesheet" href="webgl.css" type="text/css">
-  </head>
+	<head>
+		<title>Male/Female Ratio of Different Schools</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="vis1.css">
+	</head>
+	<body>
+		<div id="container"></div>
+		<div id="title"> Male/Female Ratio of Different Schools<br /><br /><br /><br /><br /><br /></div>
+		<div id="select_data_title"> Dataset:</div>
+			<select id="select_data" class="browser-default">
+				<option value="all">Entire Dataset over all Years</option>
+				<option value="time">Entire Dataset in Yearly Time Slices</option>
+			</select>
 
-  <body>
-    <canvas id="glcanvas" width="640" height="480"></canvas>
-  </body>
+		<div id="select_color_title"> Colors:</div>
+			<select id="select_color" class="browser-default">
+				<option value="rb">Male=Red || Female=Blue</option>
+				<option value="gy">Male=Green || Female=Yellow</option>
+			</select>
 
-  <script src="libs/gl-matrix.js"></script>
-  <script src="visualization.js"></script>
+		<div id="select_ctype_title"> Color Type:</div>
+			<select id="select_ctype" class="browser-default">
+				<option value="split">Section the sphere with two colors</option>
+				<option value="solid">Single color as a mixture of M/F percentages</option>
+				<option value="normal">Single color as a mixture of M/F percentages (Normalized)</option>
+			</select>
+
+		<div id="select_time_title"> Time Slices:</div>
+			<select id="select_time" class="browser-default">
+				<option value="t1">2012 - 2013</option>
+				<option value="t2">2013 - 2014</option>
+				<option value="t3">2014 - 2015</option>
+				<option value="t4">2015 - 2016</option>
+				<option value="t5">2016 - 2017</option>
+			</select>
+
+		<div id="ratio"> School Index:<br />Number of Students:<br />Ratio (M/F):</div>
+		<div id="info"> Visualization Information: <br /><br />This 3-D visualization depicts a subset of data from the NCWIT-TrackingToolData.csv file.  Each of the spheres represents the total number of students from a particular school for the entire dataset.  The size of the school is encoded with the radius of the sphere.  The color of each sphere is a percentage of two values that sum to one and correspond to the ratio of male to female students at that institution.</div>
+		<div id="help"> General Help:<br /><br /> Select different subsets of the NCWIT dataset with the option bar in the upper left hand corner of the window.  Hover over top of each of the spheres with your mouse.  The spheres highlight as your mouse moves over them and when clicked upon, pertinent information for the sphere will be displayed in the bottom right hand corner.</div>
+
+		<script src="libs/three.js"></script>
+		<script src="libs/stats.min.js"></script>
+		<script src="libs/jquery-3.3.1.min.js"></script>
+		<script src="libs/THREEx.FullScreen.js"></script>
+		<script src="libs/THREEx.KeyboardState.js"></script>
+		<script src="libs/THREEx.WindowResize.js"></script>
+		<script src="libs/jquery-ui.js"></script>
+		<script src="gen_vis.js"> </script>
+	</body>
 </html>
