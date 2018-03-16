@@ -52,12 +52,12 @@ class MaleFemaleVis():
                 if not self.is_computer_science(major):
                     # only look at CS majors for now
                     continue
-                print("[{}, M]: i:{}, y:{}, m:{}".format(
-                    num, institution, school_year, major))
+                #print("[{}, M]: i:{}, y:{}, m:{}".format(
+                #    num, institution, school_year, major))
                 aggregate = self.get_student_numbers('Male', num)
                 self.parsed[institution][school_year]['Male'] = aggregate
-                print("[{}, F]: i:{}, y:{}, m:{}".format(
-                    num, institution, school_year, major))
+                #print("[{}, F]: i:{}, y:{}, m:{}".format(
+                #    num, institution, school_year, major))
                 aggregate = self.get_student_numbers('Female', num)
                 self.parsed[institution][school_year]['Female'] = aggregate
                 #for year in aggregate.keys():
@@ -74,13 +74,23 @@ class MaleFemaleVis():
 
     def write_data(self):
         outfile = "filtered-v3-data.csv"
-        data = self.parsed
-        f = open(outfile, 'w', encoding='utf-8')
+        data = self.grouped_dict
+        f = open(outfile, 'w', encoding='utf-8', newline='')
         writer = csv.writer(f, delimiter=',', quotechar='"')
-        for item in data:
+        # write headers
+        header = ["Institution", "Class Year Start", "Male Freshmen", "Male Sophomores", "Male Juniors", 
+                  "Male Seniors", "Female Freshmen", "Female Sophomores", "Female Juniors", "Female Seniors"]
+        writer.writerow(header)
+        for inst in data.keys():
             # filter data, write ones that are appropriate
-            row = []
-            writer.writerow(row)
+            # write by institution, year, etc
+            for year in data[inst].keys():
+                row = [inst, year]
+                for gen in data[inst][year].keys():
+                    gen_row = [data[inst][year][gen][i] for i in range(4)]
+                    row.extend(gen_row)
+                writer.writerow(row)
+        f.close()
 
     def group_by_class(self):
         grouped_d = nested_dict()
@@ -92,22 +102,25 @@ class MaleFemaleVis():
             if len(years) >= 4:
                 # is the data within those years valid?
                 for year in years:
-                    valid = True
-                    cls = ['Freshmen', 'Sophomores', 'Juniors', 'Seniors']
                     class_d = nested_dict()
-                    for i, cl in enumerate(cls):
-                        year_i = str(int(year) + i)
-                        if year_i in years:
-                            d = self.parsed[inst][year_i]['Female']
-                            class_d[i] = d[cl]['calc_tot']
-                        else:
-                            valid = False
+                    valid = True
+                    for gen in ['Male', 'Female']:
+                        cls = ['Freshmen', 'Sophomores', 'Juniors', 'Seniors']
+                        for i, cl in enumerate(cls):
+                            year_i = str(int(year) + i)
+                            if year_i in years:
+                                class_d[gen][i] = self.parsed[inst][year_i][gen][cl]['giv_tot']
+                                #print("[i:{}][y:{}][g:{}][cl:{}] {}".format(inst, year_i, gen, cl, self.parsed[inst][year_i][gen][cl]))
+                                if year_i == year and class_d[gen][i] == 0:
+                                    # should have some starting majors in each gender
+                                    valid = False
+                            else:
+                                valid = False
                     # is the class valid for all 4 years? 
                     # add to dict if so
                     if valid:
-                        print("{}: {}".format(inst, year))
-                        print(class_d)
-                        grouped_d[inst][year][gen] = class_d
+                        print("[{}: {}]: {}".format(inst, year, class_d))
+                        grouped_d[inst][year] = class_d
         self.grouped_dict = grouped_d
 
     def get_student_numbers(self, gender, record_num):
@@ -182,6 +195,7 @@ if __name__ == '__main__':
     vis.read_data()
     vis.format_data()
     vis.group_by_class()
+    vis.write_data()
     #vis.write_data()
 
     # year --> major --> race --> #

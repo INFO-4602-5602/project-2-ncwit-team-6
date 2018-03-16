@@ -1,0 +1,6 @@
+resources:
+https://stackoverflow.com/questions/2435525/best-practice-access-form-elements-by-html-id-or-name-attribute
+https://www.w3schools.com/jsref/met_select_add.asp
+http://alignedleft.com/tutorials/d3/the-power-of-data
+http://bl.ocks.org/jhubley/17aa30fd98eb0cc7072f
+https://www.formget.com/jquery-select-change/
