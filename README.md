@@ -5,7 +5,7 @@
 - Christopher (Keith) Godley
 
 # How to run it:
-- start up a server (python or otherwise) and open up the index page at the root of the directory. you can navigate to the visualizations from here!
+- Start up an http server (python or otherwise) and open up the index page at the root of the directory. You can navigate to the visualizations from there!
 
 # visualization 1 (Josiah):
 This visualization depicts the male/female ratio of the student population
@@ -75,9 +75,8 @@ My design process started with the question above: what does student retention r
 
 I had to filter to make sure we had enough data to display all 4 years. This eliminated two types of (institution,class) pairs unforunately:
 1. Classes which were too recent (class of 2018 or later) are not displayed, because we can't see all 4 years of them.
-2. Institutions which don't have 4 years of M/F data broken down by class are not displayed. 
+2. Institutions which don't have 4 years of M/F data broken down by class are not displayed.
 
 A line graph was chosen with a line per gender, because this is really the clearest way of representing such time-series data. This data is more fine-grained than the other visualizations. The other visualizations provide good high-level views of the gender/race differences, and this visualization provides detail for a single institution and class, so they complement each-other well.
 
 **Interactivity:** A hover tooltip displays the gender, year, and number of students for each point. Selecting a different institution/class from the drop-down will render the data for that combination in place of the previous data. Male is shown in Blue, and Female is shown in Red.
-
