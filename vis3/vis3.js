@@ -197,7 +197,7 @@ function handleScatterDotMouseoutEvent() {
     if(gender == "Male") {
         fill = "blue";
     } else {
-        fill = "female";
+        fill = "red";
     }
     d3.select(this).attr("fill", fill);
     // bell 1: tooltip disappear
