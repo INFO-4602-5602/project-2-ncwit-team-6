@@ -8,7 +8,7 @@ class MaleFemaleVis():
     """
     Class that contains the functions needed to read in a csv file and filter it to provide data for a visualization
     """
-    def __init__(self, filename='../data/NCWIT-TrackingToolData-Scrubbed.csv'):
+    def __init__(self, filename='../data/NCWIT_DataV2_RawData.csv'):
         self.data = {}
         self.header = []
         self.filename = filename
@@ -65,19 +65,19 @@ class MaleFemaleVis():
                 if 'Female' in field and not 'ACT' in field and not 'SAT' in field and not 'GPA' in field:
                     race = str(field.split(': ')[1].split('(')[0]).rstrip()
                     try:
-                        if not isinstance(self.female[cur_institution][school_year][cur_major][year][race], int):
-                            self.female[cur_institution][school_year][cur_major][year][race] = int(self.data[num][field])
+                        if not isinstance(self.female[cur_institution][race], int):
+                            self.female[cur_institution][race] = int(self.data[num][field])
                         else:
-                            self.female[cur_institution][school_year][cur_major][year][race] += int(self.data[num][field])
+                            self.female[cur_institution][race] += int(self.data[num][field])
                     except ValueError:
                         pass
                 elif 'Male' in field and not 'ACT' in field and not 'SAT' in field and not 'GPA' in field:
                     race = str(field.split(': ')[1].split('(')[0]).rstrip()
                     try:
-                        if not isinstance(self.male[cur_institution][school_year][cur_major][year][race], int):
-                            self.male[cur_institution][school_year][cur_major][year][race] = int(self.data[num][field])
+                        if not isinstance(self.male[cur_institution][race], int):
+                            self.male[cur_institution][race] = int(self.data[num][field])
                         else:
-                            self.male[cur_institution][school_year][cur_major][year][race] += int(self.data[num][field])
+                            self.male[cur_institution][race] += int(self.data[num][field])
                     except ValueError:
                         pass
 
@@ -111,6 +111,27 @@ class MaleFemaleVis():
                 df[fkey][fkey1] = sum(self.female[fkey][fkey1].values_flat())
                 dm[mkey][mkey1] = sum(self.male[mkey][mkey1].values_flat())
         return df, dm
+
+    def format_3(self):
+        df = {}
+        dm = {}
+        for fkey, mkey in zip(self.female.keys(), self.male.keys()):
+            for fkey1, mkey1 in zip(self.female[fkey].keys(), self.male[mkey].keys()):
+                if 'Asian' in fkey1:
+                    df[fkey] = self.female[fkey][fkey1]
+                if 'Asian' in mkey1:
+                    dm[mkey] = self.male[mkey][mkey1]
+        return df, dm
+
+    def dump_csv(self, df, dm):
+        with open('dictf.csv', 'w') as csv_file:
+            writer = csv.writer(csv_file)
+            for key, value in df.items():
+               writer.writerow([key, value])
+        with open('dictm.csv', 'w') as csv_file:
+            writer = csv.writer(csv_file)
+            for key, value in dm.items():
+               writer.writerow([key, value])
 
     """
     Function to dump a given dict or dict of dicts to json format
@@ -150,7 +171,7 @@ if __name__ == '__main__':
         total += sum(vis.female['91']['Computer Science'][key].values_flat())
     print(total)
     print(sum(vis.female['91']['Computer Science'].values_flat()))
-    df, dm = vis.format_1()
-    vis.dump(df, dm)
-    df, dm = vis.format_2()
-    vis.dump(df, dm, True)
+    #df, dm = vis.format_1()
+    #vis.dump(df, dm)
+    df, dm = vis.format_3()
+    vis.dump_csv(df, dm)
